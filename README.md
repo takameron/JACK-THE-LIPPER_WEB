@@ -3,6 +3,8 @@
 > F team | Web IoT Makers Challenge 2019-20 in Shinshu
 
 ## Build Setup
+Create a file called `env.development.js`, `env.production.js` by copying `env.sample.js`.
+Then, replace the value in the copied file with the actual value.
 
 ``` bash
 # install dependencies

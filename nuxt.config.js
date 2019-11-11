@@ -1,3 +1,5 @@
+const environment = process.env.NODE_ENV || 'development'
+const envSet = require(`./env.${environment}.js`)
 
 module.exports = {
   mode: 'universal',
@@ -68,5 +70,6 @@ module.exports = {
     */
     extend (config, ctx) {
     }
-  }
+  },
+  env: envSet
 }

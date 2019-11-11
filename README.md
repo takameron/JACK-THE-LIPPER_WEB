@@ -8,6 +8,12 @@
 # install dependencies
 $ yarn install
 
+# migrate
+$ node_modules/.bin/sequelize db:migrate --env development
+
+# if you want to migrate for all environment
+$ node_modules/.bin/sequelize db:migrate
+
 # serve with hot reload at localhost:3000
 $ yarn dev
 

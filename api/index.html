@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'/>
+        <meta name="viewport" content="width=device-width"/>
+        <title>JACK THE LIPPER API</title>
+    </head>
+    <body>
+
+<h1>JACK THE LIPPER API</h1>
+
+<h2>仕様</h2>
+
+<h3>登録</h3>
+
+<table border="1">
+    <tr>
+        <th>メソッド</th>
+        <th>HTTPリクエスト</th>
+        <th>概要</th>
+    </tr>
+    <tr>
+        <td>POST</td>
+        <td>/api/v1/dryness</td>
+        <td>新規登録</td>
+    </tr>
+</table>
+
+<h4>パラメータ</h4>
+<table border="1">
+    <tr>
+        <th>名前</th>
+        <th>必須か</th>
+        <th>項目</th>
+        <th>注釈</th>
+        <th>例</th>
+    </tr>
+    <tr>
+        <td>lat</td>
+        <td>必須</td>
+        <td>緯度</td>
+        <td></td>
+        <td>36.111221</td>
+    </tr>
+    <tr>
+        <td>long</td>
+        <td>必須</td>
+        <td>経度</td>
+        <td></td>
+        <td>137.950266</td>
+    </tr>
+    <tr>
+        <td>score</td>
+        <td>必須</td>
+        <td>乾燥度</td>
+        <td>1（最低）~5（最高）の5段階</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>age</td>
+        <td>任意</td>
+        <td>年齢</td>
+        <td></td>
+        <td>20</td>
+    </tr>
+    <tr>
+        <td>sex</td>
+        <td>任意</td>
+        <td>性別</td>
+        <td>0:女性 1:男性</td>
+        <td>0</td>
+    </tr>
+</table>
+
+<p>
+リクエスト例<br>
+http://127.0.0.1:3000/api/v1/dryness?lat=36.111221&long=137.950266&age=20&sex=0&score=3
+</p>
+
+
+<h3>確認</h3>
+
+<table border="1">
+    <tr>
+        <th>メソッド</th>
+        <th>HTTPリクエスト</th>
+        <th>概要</th>
+    </tr>
+    <tr>
+        <td>GET</td>
+        <td>/api/v1/dryness/:id</td>
+        <td>登録済み情報の取得</td>
+    </tr>
+</table>
+
+<h4>パラメータ</h4>
+<table border="1">
+    <tr>
+        <th>名前</th>
+        <th>必須か</th>
+        <th>項目</th>
+        <th>注釈</th>
+        <th>例</th>
+    </tr>
+</table>
+    
+<p>
+リクエスト例<br>
+http://127.0.0.1:3000/api/v1/dryness/a97768ae-4bdc-4554-8d05-417e90f81264
+</p>
+
+
+<h3>更新</h3>
+
+<table border="1">
+    <tr>
+        <th>メソッド</th>
+        <th>HTTPリクエスト</th>
+        <th>概要</th>
+    </tr>
+    <tr>
+        <td>PUT</td>
+        <td>/api/v1/dryness/:id</td>
+        <td>登録済み情報の更新</td>
+    </tr>
+</table>
+
+<h4>パラメータ</h4>
+<table border="1">
+    <tr>
+        <th>名前</th>
+        <th>必須か</th>
+        <th>項目</th>
+        <th>注釈</th>
+        <th>例</th>
+    </tr>
+    <tr>
+        <td>lat</td>
+        <td>必須</td>
+        <td>緯度</td>
+        <td></td>
+        <td>36.111221</td>
+    </tr>
+    <tr>
+        <td>long</td>
+        <td>必須</td>
+        <td>経度</td>
+        <td></td>
+        <td>137.950266</td>
+    </tr>
+    <tr>
+        <td>score</td>
+        <td>必須</td>
+        <td>乾燥度</td>
+        <td>1（最低）~5（最高）の5段階</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>age</td>
+        <td>任意</td>
+        <td>年齢</td>
+        <td></td>
+        <td>20</td>
+    </tr>
+    <tr>
+        <td>sex</td>
+        <td>任意</td>
+        <td>性別</td>
+        <td>0:女性 1:男性</td>
+        <td>0</td>
+    </tr>
+</table>
+
+<p>
+リクエスト例<br>
+http://127.0.0.1:3000/api/v1/dryness/a97768ae-4bdc-4554-8d05-417e90f81264?lat=36.111221&long=137.950266&age=50&sex=1&score=2
+</p>
+
+
+<h3>削除</h3>
+
+<table border="1">
+    <tr>
+        <th>メソッド</th>
+        <th>HTTPリクエスト</th>
+        <th>概要</th>
+    </tr>
+    <tr>
+        <td>DELETE</td>
+        <td>/api/v1/dryness/:id</td>
+        <td>登録済み情報の削除</td>
+    </tr>
+</table>
+
+<h4>パラメータ</h4>
+<table border="1">
+    <tr>
+        <th>名前</th>
+        <th>必須か</th>
+        <th>項目</th>
+        <th>注釈</th>
+        <th>例</th>
+    </tr>
+</table>
+    
+<p>
+リクエスト例<br>
+http://127.0.0.1:3000/api/v1/dryness/a97768ae-4bdc-4554-8d05-417e90f81264
+</p>
+
+
+<h2>APIの動作確認</h2>
+PythonのRequestsライブラリを使用すると、任意のHTTPメソッドでURLにアクセスできます。<br>
+
+<p>
+動作例<br>
+$ pip install requests<br>
+$ python3<br>
+>>> import requests<br>
+>>> requests.post('http://127.0.0.1:3000/api/v1/dryness?lat=36.111221&long=137.950266&age=20&sex=0&score=3')<br>
+>>> requests.get('http://127.0.0.1:3000/api/v1/dryness/a97768ae-4bdc-4554-8d05-417e90f81264')<br>
+>>> requests.put('http://127.0.0.1:3000/api/v1/dryness/a97768ae-4bdc-4554-8d05-417e90f81264?lat=36.111221&long=137.950266&age=50&sex=1&score=2')<br>
+>>> requests.delete('http://127.0.0.1:3000/api/v1/dryness/a97768ae-4bdc-4554-8d05-417e90f81264')<br>
+</p>
+
+    </body>
+</html>

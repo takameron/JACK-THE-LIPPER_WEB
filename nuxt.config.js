@@ -71,5 +71,9 @@ module.exports = {
     extend (config, ctx) {
     }
   },
-  env: envSet
+  env: envSet,
+  /*
+  ** Nuxt.js serverMiddleware
+   */
+  serverMiddleware: ['../api/']
 }

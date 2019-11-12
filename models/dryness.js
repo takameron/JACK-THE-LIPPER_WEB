@@ -1,4 +1,6 @@
 'use strict'
+const uuid = require('uuid/v4')
+
 module.exports = (sequelize, DataTypes) => {
   const dryness = sequelize.define(
     'dryness',
@@ -19,5 +21,8 @@ module.exports = (sequelize, DataTypes) => {
   dryness.associate = function (models) {
     // associations can be defined here
   }
+  dryness.beforeCreate((dryness, _) => {
+    return dryness.id === uuid()
+  })
   return dryness
 }

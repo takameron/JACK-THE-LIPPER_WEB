@@ -3,9 +3,14 @@ const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 const app = express()
 
+const models = require('../models')
+const Dryness = models.dryness
+
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
 config.dev = process.env.NODE_ENV !== 'production'
+
+let server
 
 async function start () {
   // Init Nuxt.js
@@ -25,10 +30,44 @@ async function start () {
   app.use(nuxt.render)
 
   // Listen the server
-  app.listen(port, host)
+  server = app.listen(port, host)
+  socketStart(server)
   consola.ready({
     message: `Server listening on http://${host}:${port}`,
     badge: true
   })
 }
+
+function socketStart (server) {
+  const io = require('socket.io').listen(server)
+
+  io.on('connection', (socket) => {
+    consola.info({
+      message: 'id: ' + socket.id + ' is connected',
+      badge: true
+    })
+
+    Dryness.findAll()
+      .then((records) => {
+        if (records.length > 0) {
+          records.forEach((record) => {
+            socket.emit('message', record)
+          })
+        }
+      })
+      .catch((err) => {
+        socket.emit('error', err)
+      })
+  })
+}
+
+// eslint-disable-next-line no-unused-vars
+function sendNewRecord (record) {
+  const io = require('socket.io').listen(server)
+
+  io.on('connection', (socket) => {
+    socket.broadcast.emit('message', record)
+  })
+}
+
 start()

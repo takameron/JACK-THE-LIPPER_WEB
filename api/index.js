@@ -3,6 +3,7 @@ const consola = require('consola')
 const express = require('express')
 const app = express()
 
+const srv = require('../server/index')
 const db = require('./db')
 let urlInfo
 
@@ -29,6 +30,8 @@ app.post('/v1/dryness/', async function (req, res, next) {
       message: `Coundn't create record: ${statusCode} ${record} ${req.url}`,
       badge: true
     })
+  } else {
+    srv.sendNewRecord(record)
   }
   res.status(statusCode).send(record)
 })

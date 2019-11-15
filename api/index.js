@@ -25,6 +25,7 @@ app.post('/v1/dryness/', async function (req, res, next) {
   const info = await db.create(urlInfo)
   const statusCode = info[0]
   const record = info[1]
+
   if (statusCode !== 200) {
     consola.error({
       message: `Coundn't create record: ${statusCode} ${record} ${req.url}`,
@@ -59,27 +60,27 @@ app.put('/v1/dryness/:id', async function (req, res, next) {
       message: `Coundn't update record: ${statusCode} ${record}`,
       badge: true
     })
-  } else if (record === 0) {
-    res.status(404).send(`{"Error": "Not Found"}`)
   } else {
-    res.status(statusCode).send(`{"Updated": ${record}}`)
+    srv.sendUpdateRecord(record)
   }
+  res.status(statusCode).send(record)
 })
 
 app.delete('/v1/dryness/:id', async function (req, res, next) {
   const info = await db.remove(req.params.id)
   const statusCode = info[0]
-  const record = info[1]
+  const count = info[1]
 
   if (statusCode !== 200) {
     consola.error({
-      message: `problem with request: ${statusCode} ${record}`,
+      message: `problem with request: ${statusCode} ${count}`,
       badge: true
     })
-  } else if (record === 0) {
+  } else if (count === 0) {
     res.status(404).send(`{"Error": "Not Found"}`)
   } else {
-    res.status(statusCode).send(`{"Destroyed": ${record}}`)
+    srv.sendRemoveRecord(req.params.id)
+    res.status(statusCode).send(`{"Destroyed": ${count}}`)
   }
 })
 

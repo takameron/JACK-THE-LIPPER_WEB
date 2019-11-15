@@ -11,6 +11,7 @@ const config = require('../nuxt.config.js')
 config.dev = process.env.NODE_ENV !== 'production'
 
 let server
+let socketShare
 
 async function start () {
   // Init Nuxt.js
@@ -42,6 +43,7 @@ function socketStart (server) {
   const io = require('socket.io').listen(server)
 
   io.on('connection', (socket) => {
+    socketShare = socket
     consola.info({
       message: 'id: ' + socket.id + ' is connected',
       badge: true
@@ -51,7 +53,7 @@ function socketStart (server) {
       .then((records) => {
         if (records.length > 0) {
           records.forEach((record) => {
-            socket.emit('message', record)
+            socket.emit('new-message', record)
           })
         }
       })
@@ -63,11 +65,24 @@ function socketStart (server) {
 
 // eslint-disable-next-line no-unused-vars
 function sendNewRecord (record) {
-  const io = require('socket.io').listen(server)
+  socketShare.emit('new-message', record)
+  socketShare.broadcast.emit('new-message', record)
+}
 
-  io.on('connection', (socket) => {
-    socket.broadcast.emit('message', record)
-  })
+function sendUpdateRecord (record) {
+  socketShare.emit('update-message', record)
+  socketShare.broadcast.emit('update-message', record)
+}
+
+function sendRemoveRecord (id) {
+  socketShare.emit('remove-id', id)
+  socketShare.broadcast.emit('remove-id', id)
 }
 
 start()
+
+module.exports = {
+  sendNewRecord,
+  sendUpdateRecord,
+  sendRemoveRecord
+}

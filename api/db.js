@@ -104,7 +104,17 @@ function update (id, urlInfo) {
 
       Dryness.update(param, filter)
         .then((record) => {
-          resolve([200, record])
+          if (record === 0) {
+            resolve([400, '{"Error": "Not Found"}'])
+          }
+        })
+        .catch((err) => {
+          resolve([500, err])
+        })
+
+      Dryness.findByPk(id)
+        .then((r) => {
+          resolve(r ? [200, r] : [404, '{"Error": "Not Found"}'])
         })
         .catch((err) => {
           resolve([500, err])

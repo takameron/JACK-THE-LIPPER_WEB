@@ -8,6 +8,7 @@ const Dryness = models.dryness
 
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
+const auth = require('./auth')
 config.dev = process.env.NODE_ENV !== 'production'
 
 let server
@@ -28,6 +29,7 @@ async function start () {
   }
 
   // Give nuxt middleware to express
+  app.use(auth)
   app.use(nuxt.render)
 
   // Listen the server

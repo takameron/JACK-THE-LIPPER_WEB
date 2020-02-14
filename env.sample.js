@@ -1,3 +1,4 @@
 module.exports = {
-  YAHOO_APIKEY: '******'
+  YAHOO_APIKEY: '******',
+  BASIC_PASSWORD: '******'
 }

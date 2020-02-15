@@ -15,6 +15,9 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+      { src: 'https://map.yahooapis.jp/js/V1/jsapi?appid=' + envSet.YAHOO_APIKEY }
     ]
   },
   /*
@@ -30,6 +33,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    `~/plugins/scheme.js`
   ],
   /*
   ** Nuxt.js dev-modules

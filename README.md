@@ -5,6 +5,7 @@
 ## Build Setup
 Create a file called `env.development.js`, `env.production.js` by copying `env.sample.js`.
 Then, replace the value in the copied file with the actual value.
+If you do not define `BASIC_PASSWORD`, Basic Authentication doesn't be performed.
 
 ``` bash
 # install dependencies
@@ -26,5 +27,11 @@ $ yarn start
 # generate static project
 $ yarn generate
 ```
+
+### Basic Authentication
+If `BASIC_PASSWORD` is defined in `env.development.js` or `env.production.js`, Basic Authentication will be performed.
+
+* ID : `username`
+* Password : `BASIC_PASSWORD` value in `env.*.js`
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

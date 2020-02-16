@@ -30,6 +30,9 @@ export default {
     List,
     Map
   },
+  async fetch ({ store }) {
+    await store.dispatch('geo_code/get')
+  },
   data () {
     return {
       socket: ''
@@ -52,9 +55,6 @@ export default {
       this.$store.dispatch('dryness/update')
       this.$store.dispatch('ymap/setColors')
     }
-  },
-  async fetch ({ store }) {
-    await store.dispatch('geo_code/get')
   },
   mounted () {
     this.socket = io()

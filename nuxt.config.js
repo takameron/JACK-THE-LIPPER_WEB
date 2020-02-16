@@ -33,7 +33,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    `~/plugins/scheme.js`
+    '~/plugins/scheme.js'
   ],
   /*
   ** Nuxt.js dev-modules

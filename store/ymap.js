@@ -24,8 +24,8 @@ export const mutations = {
   setCenter (state, latlng) {
     state.center = latlng
     ymap.panTo({
-      'center': new Y.LatLng(state.center.lat, state.center.lng),
-      'animation': true
+      center: new Y.LatLng(state.center.lat, state.center.lng),
+      animation: true
     })
   },
   setColors (state, list) {
@@ -33,7 +33,7 @@ export const mutations = {
 
     const colors = {}
     colors.area = {}
-    colors.area.default = `dcdcdc`
+    colors.area.default = 'dcdcdc'
     for (const item in list) {
       if (zoomLevel > 8) {
         // 市町村単位で集計（同一の自治体コードのスコアを配列化）
@@ -79,11 +79,11 @@ export const mutations = {
   },
   init (state) {
     /* global Y */
-    ymap = new Y.Map('yahoo_map', { 'configure': { 'scrollWheelZoom': true } })
+    ymap = new Y.Map('yahoo_map', { configure: { scrollWheelZoom: true } })
     ymap.addControl(new Y.SliderZoomControlVertical())
 
     blankmap = new Y.BlankMapLayer()
-    const layerset = new Y.LayerSet('白地図', [blankmap], { 'maxZoom': 13, 'minZoom': 6 })
+    const layerset = new Y.LayerSet('白地図', [blankmap], { maxZoom: 13, minZoom: 6 })
     ymap.addLayerSet('blankmap', layerset)
 
     ymap.drawMap(

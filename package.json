@@ -12,29 +12,29 @@
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.8.0",
+    "@nuxtjs/axios": "^5.9.5",
     "@nuxtjs/bulma": "^1.2.6",
-    "@nuxtjs/pwa": "^3.0.0-0",
+    "@nuxtjs/pwa": "^3.0.0-beta.20",
     "basic-auth": "^2.0.1",
-    "cross-env": "^6.0.3",
+    "cross-env": "^7.0.0",
     "date-fns": "^2.9.0",
     "express": "^4.17.1",
-    "nuxt": "^2.10.2",
-    "nuxt-buefy": "^0.3.17",
-    "sequelize": "^5.21.2",
+    "nuxt": "^2.11.0",
+    "nuxt-buefy": "^0.3.21",
+    "sequelize": "^5.21.4",
     "sequelize-cli": "^5.5.1",
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0",
-    "sqlite3": "^4.1.0",
-    "uuid": "^3.3.3"
+    "sqlite3": "^4.1.1",
+    "uuid": "^3.4.0"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config": "^1.1.2",
+    "@nuxtjs/eslint-config": "^2.0.2",
     "@nuxtjs/eslint-module": "^1.1.0",
     "babel-eslint": "^10.0.3",
-    "eslint": "^6.6.0",
-    "eslint-plugin-nuxt": ">=0.5.0",
-    "nodemon": "^1.19.4",
+    "eslint": "^6.8.0",
+    "eslint-plugin-nuxt": ">=0.5.1",
+    "nodemon": "^2.0.2",
     "raw-loader": "^4.0.0"
   }
 }

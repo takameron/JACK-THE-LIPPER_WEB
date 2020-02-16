@@ -77,7 +77,7 @@ app.delete('/v1/dryness/:id', async function (req, res, next) {
       badge: true
     })
   } else if (count === 0) {
-    res.status(404).send(`{"Error": "Not Found"}`)
+    res.status(404).send('{"Error": "Not Found"}')
   } else {
     srv.sendRemoveRecord(req.params.id)
     res.status(statusCode).send(`{"Destroyed": ${count}}`)

@@ -54,7 +54,7 @@ function getCode (pos) {
         } catch (e) {
           if (e instanceof CanNotGetCodeError) {
             consola.error({
-              message: `Failed to get code` + ` <${e.statusCode}: ${e.message}>` + ` ${e.path}`,
+              message: 'Failed to get code' + ` <${e.statusCode}: ${e.message}>` + ` ${e.path}`,
               badge: true
             })
           } else {

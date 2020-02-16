@@ -33,15 +33,18 @@ function getCode (pos) {
 }
 
 function create (urlInfo) {
-  return new Promise(async (resolve, reject) => {
-    const pos = {}
+  const pos = {}
 
-    const { ok, msg } = check(urlInfo)
-    if (ok === false) { resolve([400, `"Error": "${msg}"`]) }
+  const { ok, msg } = check(urlInfo)
+  if (ok === false) {
+    return Promise.resolve([400, `"Error": "${msg}"`])
+  }
 
-    pos.lat = urlInfo.query.lat
-    pos.long = urlInfo.query.long
-    const codeInfo = await getCode(pos)
+  pos.lat = urlInfo.query.lat
+  pos.long = urlInfo.query.long
+  const codeInfo = Promise.resolve(getCode(pos))
+
+  return new Promise((resolve, reject) => {
     const code = codeInfo[0]
     const errMsg = codeInfo[1]
     if (code < 10000) {

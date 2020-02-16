@@ -5,7 +5,7 @@
     "database": "database_development",
     "host": "127.0.0.1",
     "dialect": "sqlite",
-    "operatorsAliases": false,
+    "operatorsAliases": 0,
     "storage": "./data/development.sqlite3"
   },
   "test": {
@@ -14,7 +14,7 @@
     "database": "database_test",
     "host": "127.0.0.1",
     "dialect": "sqlite",
-    "operatorsAliases": false,
+    "operatorsAliases": 0,
     "storage": "./data/test.sqlite3"
   },
   "production": {
@@ -23,7 +23,7 @@
     "database": "database_production",
     "host": "127.0.0.1",
     "dialect": "sqlite",
-    "operatorsAliases": false,
+    "operatorsAliases": 0,
     "storage": "./data/production.sqlite3"
   }
 }

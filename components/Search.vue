@@ -10,7 +10,7 @@
         </p>
         <div class="select">
           <select id="prefecture" v-model="prefecture">
-            <option v-for="record in returnPref" :key="record.code" v-bind:value="record.code">
+            <option v-for="record in returnPref" :key="record.code" :value="record.code">
               {{ record.pref_kanji }}
             </option>
           </select>
@@ -23,7 +23,7 @@
         </p>
         <div class="select">
           <select id="city" v-model="city">
-            <option v-for="record in returnCities" :key="record.code" v-bind:value="record.code">
+            <option v-for="record in returnCities" :key="record.code" :value="record.code">
               {{ record.city_kanji }}
             </option>
           </select>
@@ -74,15 +74,15 @@ export default {
   watch: {
     dates () {
       this.$store.dispatch('dryness/change_query',
-        { 'start': this.dates[0], 'end': this.dates[1], 'prefecture': this.prefecture, 'city': this.city })
+        { start: this.dates[0], end: this.dates[1], prefecture: this.prefecture, city: this.city })
     },
     prefecture () {
       this.$store.dispatch('dryness/change_query',
-        { 'start': this.dates[0], 'end': this.dates[1], 'prefecture': this.prefecture, 'city': this.city })
+        { start: this.dates[0], end: this.dates[1], prefecture: this.prefecture, city: this.city })
     },
     city () {
       this.$store.dispatch('dryness/change_query',
-        { 'start': this.dates[0], 'end': this.dates[1], 'prefecture': this.prefecture, 'city': this.city })
+        { start: this.dates[0], end: this.dates[1], prefecture: this.prefecture, city: this.city })
     }
   }
 }

@@ -6,7 +6,7 @@ const env = require(`../env.${environment}.js`)
 const password = env.BASIC_PASSWORD
 
 const admins = {
-  'username': { password }
+  username: { password }
 }
 
 module.exports = function (request, response, next) {

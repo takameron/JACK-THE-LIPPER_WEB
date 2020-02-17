@@ -1,0 +1,54 @@
+version: '3.7'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    environment:
+      LANG: C.UTF-8
+      TZ: Asia/Tokyo
+      VIRTUAL_HOST: lips.tsukayaku.com
+      LETSENCRYPT_HOST: lips.tsukayaku.com
+      LETSENCRYPT_EMAIL: tsukayaku@gmail.com
+    volumes:
+      - ./data:/usr/local/JACK-THE-LIPPER/data:rw
+    networks:
+      - container-link
+    restart: on-failure
+
+  nginx-proxy:
+    image: jwilder/nginx-proxy:alpine
+    container_name: nginx-proxy
+    environment:
+      ENABLE_IPV6: "true"
+    ports:
+      - "80:80"
+      - "443:443" 
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./certs:/etc/nginx/certs
+    networks:
+      - container-link
+    restart: on-failure
+
+  letsencrypt: 
+    image: jrcs/letsencrypt-nginx-proxy-companion:latest
+    container_name: letsencrypt-nginx
+    depends_on:
+      - nginx-proxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./certs:/etc/nginx/certs:rw
+    networks:
+      - container-link
+    restart: on-failure
+
+networks:
+  default:
+    external:
+      name: bridge
+  container-link:
+    name: docker.internal
+    driver: bridge

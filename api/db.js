@@ -32,7 +32,7 @@ function getCode (pos) {
   })
 }
 
-function create (urlInfo) {
+async function create (urlInfo) {
   const pos = {}
 
   const { ok, msg } = check(urlInfo)
@@ -42,7 +42,7 @@ function create (urlInfo) {
 
   pos.lat = urlInfo.query.lat
   pos.long = urlInfo.query.long
-  const codeInfo = Promise.resolve(getCode(pos))
+  const codeInfo = await getCode(pos)
 
   return new Promise((resolve, reject) => {
     const code = codeInfo[0]

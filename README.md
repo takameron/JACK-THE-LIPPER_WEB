@@ -2,6 +2,12 @@
 
 > F team | Web IoT Makers Challenge 2019-20 in Shinshu
 
+## Run with Docker
+```
+# Set up env.*. js files
+$ sudo docker-compose up
+```
+
 ## Build Setup
 Create a file called `env.development.js`, `env.production.js` by copying `env.sample.js`.
 Then, replace the value in the copied file with the actual value.

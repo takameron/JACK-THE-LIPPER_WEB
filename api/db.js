@@ -15,47 +15,47 @@ function check (urlInfo) {
   if (!urlInfo.query.score) { error.msg += ' score' }
 
   // lat, longの形式
-  if (Number.isFinite(urlInfo.query.lat) && Number.isFinite(urlInfo.query.long)) {
+  if (isFinite(urlInfo.query.lat) && isFinite(urlInfo.query.long)) {
     const lat = parseFloat(urlInfo.query.lat)
     const long = parseFloat(urlInfo.query.long)
-    if (lat < 20.2531 && lat > 45.3326) {
+    if (lat < 20.2531 || lat > 45.3326) {
       error.msg += 'Invalid lat range. The range is 20.2531-45.3326.'
     }
-    if (long < 122.5557 && long > 153.5912) {
+    if (long < 122.5557 || long > 153.5912) {
       error.msg += 'Invalid long range. The range is 122.5557-153.5912.'
     }
   } else {
     error.msg += 'lat or long is not a number.'
   }
   // 年齢の形式
-  if (Number.isInteger(urlInfo.query.age)) {
+  if (isFinite(urlInfo.query.age)) {
     const age = parseInt(urlInfo.query.age)
-    if (age < 0 && age > 130) {
+    if (age < 0 || age > 130) {
       error.msg += 'Invalid age range. The range is 0-130.'
     }
   } else {
-    error.msg += 'score is not an integer.'
+    error.msg += 'score is not a number.'
   }
   // 性別の形式
-  if (Number.isInteger(urlInfo.query.sex)) {
+  if (isFinite(urlInfo.query.sex)) {
     const sex = parseInt(urlInfo.query.sex)
-    if (sex === 0 && sex === 1) {
+    if (!(sex === 0 || sex === 1)) {
       error.msg += 'Invalid sex value. sex value is 0 or 1.'
     }
   } else {
-    error.msg += 'sex is not an integer.'
+    error.msg += 'sex is not a number.'
   }
   // scoreの形式
-  if (Number.isInteger(urlInfo.query.score)) {
+  if (isFinite(urlInfo.query.score)) {
     const score = parseInt(urlInfo.query.score)
-    if (score < 1 && score > 5) {
+    if (score < 1 || score > 5) {
       error.msg += 'Invalid score range. The range is 1-5.'
     }
   } else {
-    error.msg += 'score is not an integer.'
+    error.msg += 'score is not a number.'
   }
 
-  if (error.msg !== '') { return (false, error.msg) } else { return (true, 'OK') }
+  if (error.msg !== '') { return { ok: false, msg: error.msg } } else { return { ok: true, msg: 'OK' } }
 }
 
 function getCode (pos) {

@@ -65,18 +65,24 @@ function socketStart (server) {
 
 // eslint-disable-next-line no-unused-vars
 function sendNewRecord (record) {
-  socketShare.emit('new-message', record)
-  socketShare.broadcast.emit('new-message', record)
+  if (socketShare) {
+    socketShare.emit('new-message', record)
+    socketShare.broadcast.emit('new-message', record)
+  }
 }
 
 function sendUpdateRecord (record) {
-  socketShare.emit('update-message', record)
-  socketShare.broadcast.emit('update-message', record)
+  if (socketShare) {
+    socketShare.emit('update-message', record)
+    socketShare.broadcast.emit('update-message', record)
+  }
 }
 
 function sendRemoveRecord (id) {
-  socketShare.emit('remove-id', id)
-  socketShare.broadcast.emit('remove-id', id)
+  if (socketShare) {
+    socketShare.emit('remove-id', id)
+    socketShare.broadcast.emit('remove-id', id)
+  }
 }
 
 start()

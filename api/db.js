@@ -32,16 +32,19 @@ function getCode (pos) {
   })
 }
 
-function create (urlInfo) {
-  return new Promise(async (resolve, reject) => {
-    const pos = {}
+async function create (urlInfo) {
+  const pos = {}
 
-    const { ok, msg } = check(urlInfo)
-    if (ok === false) { resolve([400, `"Error": "${msg}"`]) }
+  const { ok, msg } = check(urlInfo)
+  if (ok === false) {
+    return Promise.resolve([400, `"Error": "${msg}"`])
+  }
 
-    pos.lat = urlInfo.query.lat
-    pos.long = urlInfo.query.long
-    const codeInfo = await getCode(pos)
+  pos.lat = urlInfo.query.lat
+  pos.long = urlInfo.query.long
+  const codeInfo = await getCode(pos)
+
+  return new Promise((resolve, reject) => {
     const code = codeInfo[0]
     const errMsg = codeInfo[1]
     if (code < 10000) {
@@ -104,7 +107,17 @@ function update (id, urlInfo) {
 
       Dryness.update(param, filter)
         .then((record) => {
-          resolve([200, record])
+          if (record === 0) {
+            resolve([400, '{"Error": "Not Found"}'])
+          }
+        })
+        .catch((err) => {
+          resolve([500, err])
+        })
+
+      Dryness.findByPk(id)
+        .then((r) => {
+          resolve(r ? [200, r] : [404, '{"Error": "Not Found"}'])
         })
         .catch((err) => {
           resolve([500, err])

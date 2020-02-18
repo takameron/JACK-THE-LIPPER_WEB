@@ -29,7 +29,8 @@ function check (urlInfo) {
   }
   // 年齢の形式
   if (isFinite(urlInfo.query.age)) {
-    const age = parseInt(urlInfo.query.age)
+    const age = Number(urlInfo.query.age)
+    if (!Number.isInteger(age)) { error.msg += 'age is not an integer.' }
     if (age < 0 || age > 130) {
       error.msg += 'Invalid age range. The range is 0-130.'
     }
@@ -38,7 +39,8 @@ function check (urlInfo) {
   }
   // 性別の形式
   if (isFinite(urlInfo.query.sex)) {
-    const sex = parseInt(urlInfo.query.sex)
+    const sex = Number(urlInfo.query.sex)
+    if (!Number.isInteger(sex)) { error.msg += 'sex is not an integer.' }
     if (!(sex === 0 || sex === 1)) {
       error.msg += 'Invalid sex value. sex value is 0 or 1.'
     }
@@ -47,7 +49,8 @@ function check (urlInfo) {
   }
   // scoreの形式
   if (isFinite(urlInfo.query.score)) {
-    const score = parseInt(urlInfo.query.score)
+    const score = Number(urlInfo.query.score)
+    if (!Number.isInteger(score)) { error.msg += 'score is not an integer.' }
     if (score < 1 || score > 5) {
       error.msg += 'Invalid score range. The range is 1-5.'
     }

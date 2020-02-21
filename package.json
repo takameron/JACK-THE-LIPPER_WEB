@@ -20,8 +20,8 @@
     "date-fns": "^2.9.0",
     "express": "^4.17.1",
     "nuxt": "^2.11.0",
-    "nuxt-buefy": "^0.3.21",
-    "sequelize": "^5.21.4",
+    "nuxt-buefy": "^0.3.22",
+    "sequelize": "^5.21.5",
     "sequelize-cli": "^5.5.1",
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0",
@@ -37,7 +37,7 @@
     "eslint-plugin-nuxt": ">=0.5.1",
     "nodemon": "^2.0.2",
     "raw-loader": "^4.0.0",
-    "typescript": "^3.7.5",
+    "typescript": "^3.8.2",
     "webpack": "^4.41.6"
   }
 }

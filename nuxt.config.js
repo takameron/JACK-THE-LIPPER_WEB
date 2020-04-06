@@ -1,3 +1,5 @@
+const environment = process.env.NODE_ENV || 'development'
+const envSet = require(`./env.${environment}.js`)
 
 module.exports = {
   mode: 'universal',
@@ -13,6 +15,9 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+      { src: 'https://map.yahooapis.jp/js/V1/jsapi?appid=' + envSet.YAHOO_APIKEY }
     ]
   },
   /*
@@ -28,6 +33,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~/plugins/scheme.js'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -44,7 +50,8 @@ module.exports = {
     '@nuxtjs/bulma',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    'nuxt-buefy'
   ],
   /*
   ** Axios module configuration
@@ -68,5 +75,10 @@ module.exports = {
     */
     extend (config, ctx) {
     }
-  }
+  },
+  env: envSet,
+  /*
+  ** Nuxt.js serverMiddleware
+   */
+  serverMiddleware: ['../api/']
 }

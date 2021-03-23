@@ -1,7 +1,8 @@
-const express = require('express')
-const consola = require('consola')
+const app = require('express')();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
 const { Nuxt, Builder } = require('nuxt')
-const app = express()
+const consola = require('consola')
 
 const models = require('../models')
 const Dryness = models.dryness
@@ -42,8 +43,6 @@ async function start () {
 }
 
 function socketStart (server) {
-  const io = require('socket.io').listen(server)
-
   io.on('connection', (socket) => {
     socketShare = socket
     consola.info({

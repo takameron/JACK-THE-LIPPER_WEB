@@ -58,16 +58,12 @@ export default {
   computed: {
     returnPref () {
       const list = this.$store.getters['geo_code/list'].slice()
-      const res = list.filter((value, index) => {
-        if (value.code % 1000 === 0) { return value }
-      })
+      const res = list.filter(value => value.code % 1000 === 0)
       return res
     },
     returnCities () {
       const list = this.$store.getters['geo_code/list'].slice()
-      const res = list.filter((value, index) => {
-        if (parseInt(value.code / 1000) === parseInt(this.prefecture / 1000)) { return value }
-      })
+      const res = list.filter(value => parseInt(value.code / 1000) === parseInt(this.prefecture / 1000))
       return res
     }
   },

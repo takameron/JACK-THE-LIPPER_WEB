@@ -41,6 +41,7 @@ export const mutations = {
           }
         }
       }
+      return false
 
     // 仮
     // state.match_list = state.all_list.concat()

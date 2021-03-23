@@ -58,11 +58,9 @@ export default {
   methods: {
     convCode2Pos (code) {
       const list = this.$store.getters['geo_code/list'].slice()
-      const res = list.filter((value, index) => {
-        if (value.code === code) { return value }
-      })
-      if (res.length !== 0) {
-        return res[0].pref_kanji + res[0].city_kanji
+      const res = list.find(value => value.code === code)
+      if (typeof res !== 'undefined') {
+        return res.pref_kanji + res.city_kanji
       } else {
         return '取得に失敗した市町村名'
       }

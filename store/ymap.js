@@ -43,9 +43,7 @@ export const mutations = {
         let typicalValue = 0 // 代表値
         const scores = []
 
-        const sameCode = list.filter((i, index) => {
-          if (list[item].code === i.code) { return true }
-        })
+        const sameCode = list.filter(i => list[item].code === i.code)
         for (const i in sameCode) {
           scores.push(sameCode[i].score)
         }
@@ -58,9 +56,7 @@ export const mutations = {
         let typicalValue = 0
         const scores = []
 
-        const sameCode = list.filter((i, index) => {
-          if (prefCode === parseInt(i.code / 1000)) { return true }
-        })
+        const sameCode = list.filter((i, index) => prefCode === parseInt(i.code / 1000))
         for (const i in sameCode) {
           scores.push(sameCode[i].score)
         }

@@ -30,13 +30,13 @@ export default {
     List,
     Map
   },
-  async fetch ({ store }) {
-    await store.dispatch('geo_code/get')
-  },
   data () {
     return {
       socket: ''
     }
+  },
+  async fetch ({ store }) {
+    await store.dispatch('geo_code/get')
   },
   computed: {
     all_list () {

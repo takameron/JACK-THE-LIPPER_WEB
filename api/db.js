@@ -1,4 +1,4 @@
-const uuid = require('uuid/v4')
+const { v4: uuid } = require('uuid')
 const models = require('../models')
 const Dryness = models.dryness
 
